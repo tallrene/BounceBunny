@@ -134,7 +134,7 @@ on actionHandler:sender
 		tell application "Finder"
 			set currentPath to choose folder
 		end tell
-		tell application "Logic Pro X 10.4.6" to activate --Bring Logic in front
+		tell application "Logic Pro X" to activate --Bring Logic in front
 		set firstB to theResponse
 		repeat while theResponse > 0
 			if firstB = theResponse then
@@ -144,7 +144,7 @@ on actionHandler:sender
 				--Commands being here
 			end if
 			delay 0.2
-			tell application "Logic Pro X 10.4.6" to activate --Bring Logic in front
+			tell application "Logic Pro X" to activate --Bring Logic in front
 			delay 0.3
 			menu_click({"Logic Pro X", "Track", "Rename Track"}) -- Rename Track
 			delay 0.1
@@ -160,7 +160,7 @@ on actionHandler:sender
 				tell application BBv to activate
 				display dialog "Set The Settings You Want the Bounce Bunny To Bounce Your Tracks in Logic and Press Continue" buttons {"Cancel", "Continue"} default button "Continue"
 				delay 0.3
-				tell application "Logic Pro X 10.4.6" to activate --Bring Logic in front
+				tell application "Logic Pro X" to activate --Bring Logic in front
 				delay 0.3
 				tell application "System Events" to keystroke return --initiate Bounce
 				delay 0.3
@@ -191,11 +191,13 @@ on actionHandler:sender
 					
 					delay 1
 					
+					display dialog "Stop Bouncing ? Remaining tracks " & theResponse buttons {"Stop", "Continue"} default button "Continue" cancel button "Stop" giving up after 5
+					
 					delay 1
 					
 				end repeat
 				
-				tell application "Logic Pro X 10.4.6" to activate --Bring Logic in front
+				tell application "Logic Pro X" to activate --Bring Logic in front
 				
 				tell application "System Events" to keystroke "s" using {shift down} --Unsolo Selected Track
 				
@@ -224,7 +226,28 @@ on actionHandler:sender
 		--  # Your code to run for this menu choice goes here:
 		
 	else if aTitle is equal to "Stop" then
+		
+		
+		set T1 to minutes of (current date)
+		
+		set T1s to seconds of (current date)
+		
+		
 		say "stop................. wait a minute"
+		
+		delay 10
+		
+		
+		
+		
+		
+		set T2 to minutes of (current date)
+		
+		set T2s to seconds of (current date)
+		
+		set TT_ to ((T2 * 60) + T2s) - ((T1 * 60) + T1s)
+		
+		display dialog "Timer Test Expect 12 sec " & TT_ & " sec"
 		--  # Your code to run for this menu choice goes here:
 		
 		--else if aTitle is equal to "Takaaki" then
@@ -237,4 +260,3 @@ on actionHandler:sender
 		
 	end if
 end actionHandler:
-
