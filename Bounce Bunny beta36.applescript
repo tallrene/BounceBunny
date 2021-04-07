@@ -123,8 +123,14 @@ on actionHandler:sender
 		end if
 	else if aTitle is equal to "Bounce" then
 		
+		
+		--set T1 to minutes of (current date)
+		--set T1s to seconds of (current date) --Set Start Time
 		delay 2
+		--set T2 to minutes of (current date)
+		--set T2s to seconds of (current date) --Set End Time
 		set BBv to "Bounce Bunny beta36"
+		
 		
 		tell application BBv to activate
 		set theResponse to display dialog "How many tracks to bounce ?" default answer "1" with icon note buttons {"Cancel", "Continue"} default button "Continue"
@@ -137,13 +143,24 @@ on actionHandler:sender
 		tell application "Logic Pro X" to activate --Bring Logic in front
 		set firstB to theResponse
 		repeat while theResponse > 0
+			
+			
+			
+			
+			
 			if firstB = theResponse then
 				menu_click({"Logic Pro X", "Logic Pro X", "Key Commands", "Presets", "BBKCv1"}) -- Key Commands
 			else
-				display notification "Remaining tracks" & theResponse & "."
+				
+				set TT_ to ((T2 * 60) + T2s) - ((T1 * 60) + T1s)
+				set ETB to ((TT_ * theResponse) / 60)
+				display notification "Remaining tracks " & theResponse & "." & " TPB" & TT_ & " sec"
+				display notification "Estimated Time Remaing " & ETB
 				--Commands being here
 			end if
 			delay 0.2
+			set T1 to minutes of (current date)
+			set T1s to seconds of (current date) --Set Start Time
 			tell application "Logic Pro X" to activate --Bring Logic in front
 			delay 0.3
 			menu_click({"Logic Pro X", "Track", "Rename Track"}) -- Rename Track
@@ -197,11 +214,16 @@ on actionHandler:sender
 					
 				end repeat
 				
+				
+				
+				
+				
 				tell application "Logic Pro X" to activate --Bring Logic in front
 				
 				tell application "System Events" to keystroke "s" using {shift down} --Unsolo Selected Track
 				
 				tell application "System Events" to key code 125 --Unsolo Selected Track
+				
 				
 				--else
 				
@@ -213,6 +235,8 @@ on actionHandler:sender
 				
 			end tell
 			set theResponse to theResponse - 1
+			set T2 to minutes of (current date)
+			set T2s to seconds of (current date) --Set End Time
 		end repeat
 		
 		delay 1
@@ -248,6 +272,8 @@ on actionHandler:sender
 		set TT_ to ((T2 * 60) + T2s) - ((T1 * 60) + T1s)
 		
 		display dialog "Timer Test Expect 12 sec " & TT_ & " sec"
+		
+		--Its a New Day.
 		--  # Your code to run for this menu choice goes here:
 		
 		--else if aTitle is equal to "Takaaki" then
