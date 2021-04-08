@@ -154,6 +154,7 @@ on actionHandler:sender
 				
 				set TT_ to ((T2 * 60) + T2s) - ((T1 * 60) + T1s)
 				set ETB to ((TT_ * theResponse) / 60)
+				set ETB to (round (ETB * 100)) / 100
 				display notification "Remaining tracks " & theResponse & "." & " TPB " & TT_ & "sec" & "Estimated Time Remaing " & ETB & "mins"
 				
 				--display notification "Estimated Time Remaing " & ETB
@@ -221,11 +222,11 @@ on actionHandler:sender
 					repeat while (exists window "Logic Pro X" of application process "Logic Pro X")
 						
 						delay 1
-						set T2 to minutes of (current date)
-			set T2s to seconds of (current date) --Set End Time
-						set TT_ to ((T2 * 60) + T2s) - ((T1 * 60) + T1s)
-						set ETB to ((TT_ * theResponse) / 60)
-						display dialog "Tracks " & theResponse & "." & " TPB:" & TT_ & "sec. " & "Estimated Time Remaing " & ETB & "mins" buttons {"Stop", "Continue"} default button "Continue" cancel button "Stop" giving up after 2
+						--set T2 to minutes of (current date)
+						--set T2s to seconds of (current date) --Set End Time
+						--set TT_ to ((T2 * 60) + T2s) - ((T1 * 60) + T1s)
+						
+						display dialog "Tracks " & theResponse & "." & " TPB:" & TT_ & "sec. " & "Estimated Time Remaing " & ETB & "mins" buttons {"Stop", "Continue"} default button "Continue" cancel button "Stop" giving up after 3
 						
 						--display notification GUT
 						delay 1
