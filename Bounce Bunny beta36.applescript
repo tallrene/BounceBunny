@@ -154,8 +154,9 @@ on actionHandler:sender
 				
 				set TT_ to ((T2 * 60) + T2s) - ((T1 * 60) + T1s)
 				set ETB to ((TT_ * theResponse) / 60)
-				display notification "Remaining tracks " & theResponse & "." & " TPB" & TT_ & " sec"
-				display notification "Estimated Time Remaing " & ETB
+				display notification "Remaining tracks " & theResponse & "." & " TPB " & TT_ & "sec" & "Estimated Time Remaing " & ETB & "mins"
+				
+				--display notification "Estimated Time Remaing " & ETB
 				--Commands being here
 			end if
 			delay 0.2
@@ -203,16 +204,32 @@ on actionHandler:sender
 			tell application "System Events"
 				
 				--if (exists window "Logic Pro X" of application process "Logic Pro X") then
+				if firstB = theResponse then
+					
+					repeat while (exists window "Logic Pro X" of application process "Logic Pro X")
+						
+						delay 1
+						display dialog "Remaining tracks " & theResponse & "." buttons {"Stop", "Continue"} default button "Continue" cancel button "Stop" giving up after 5
+						
+						--display notification GUT
+						delay 1
+						
+					end repeat
+					
+				else
+					
+					repeat while (exists window "Logic Pro X" of application process "Logic Pro X")
+						
+						delay 1
+						display dialog "Remaining tracks " & theResponse & "." buttons {"Stop", "Continue"} default button "Continue" cancel button "Stop" giving up after 5
+						
+						display notification GUT
+						delay 1
+						
+					end repeat
+					
+				end if
 				
-				repeat while (exists window "Logic Pro X" of application process "Logic Pro X")
-					
-					delay 1
-					
-					display dialog "Stop Bouncing ? Remaining tracks " & theResponse buttons {"Stop", "Continue"} default button "Continue" cancel button "Stop" giving up after 5
-					
-					delay 1
-					
-				end repeat
 				
 				
 				
