@@ -12,21 +12,20 @@ class BBViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
-        extension BBViewController {
-          // MARK: Storyboard instantiation
-          static func freshController() -> BBViewController {
-            //1.
-            let storyboard = NSStoryboard(name: NSStoryboard.Name(rawValue: "Main"), bundle: nil)
-            //2.
-            let identifier = NSStoryboard.SceneIdentifier(rawValue: "BBViewController")
-            //3.
-            guard let viewcontroller = storyboard.instantiateController(withIdentifier: identifier) as? BBViewController else {
-              fatalError("Why cant i find QuotesViewController? - Check Main.storyboard")
-            }
-            return viewcontroller
-          }
-        }
-
     }
     
+}
+extension BBViewController {
+  // MARK: Storyboard instantiation
+  static func freshController() -> BBViewController {
+    //1.
+    let storyboard = NSStoryboard(name: NSStoryboard.Name(_: "Main"), bundle: nil)
+    //2.
+    let identifier = NSStoryboard.SceneIdentifier(_: "BBViewController")
+    //3.
+    guard let viewcontroller = storyboard.instantiateController(withIdentifier: identifier) as? BBViewController else {
+      fatalError("Why cant i find QuotesViewController? - Check Main.storyboard")
+    }
+    return viewcontroller
+  }
 }
