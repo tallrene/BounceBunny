@@ -62,6 +62,15 @@ extension BBViewController {
   @IBAction func quit(_ sender: NSButton) {
     NSApplication.shared.terminate(sender)
   }
-}
+@IBAction func say(_ sender: NSButton) {
+    // Set delay to allow me to switch to a text editor
+        let when = DispatchTime.now() + 2
+        DispatchQueue.main.asyncAfter(deadline: when) {
+            print("pressing keyboard button")
+            
+        }
 
+    
+}
+}
 

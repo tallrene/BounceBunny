@@ -12,6 +12,7 @@ struct Quote {
   
   static let all: [Quote] =  [
     Quote(text: "Never put off until tomorrow what you can do the day after tomorrow.", author: "Mark Twain"),
+    Quote(text:"Technology is nothing. What's important is that you have a faith in people,that they're basically good and smart, and if you give them tools, they'll do wonderful things with them.", author: "Steve Jobs"),
     Quote(text: "Efficiency is doing better what is already being done.", author: "Peter Drucker"),
     Quote(text: "To infinity and beyond!", author: "Buzz Lightyear"),
     Quote(text: "May the Force be with you.", author: "Han Solo"),
